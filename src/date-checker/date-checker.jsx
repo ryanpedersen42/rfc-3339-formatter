@@ -25,7 +25,7 @@ const DateChecker = () => {
         }}
       />
       {dateInput && dateInput.length > 15 && 
-        <p>{validity.toString()}</p>
+        (validity ? <p>Checks out! ✅</p> : <p>Not valid RFC 3339 ❌</p>)
       }
     </div>
   )

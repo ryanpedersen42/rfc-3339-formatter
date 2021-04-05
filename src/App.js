@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>RFC 3339 Helper</p>
+        <p className='highlight'>RFC 3339 Helper</p>
       </header>
       <div className='container'>
         <DateSelector />

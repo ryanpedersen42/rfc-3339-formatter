@@ -39,6 +39,7 @@ const DateSelector = () => {
         dateFormat="MMMM d, yyyy h:mm aa"
         showTimeInput
       />
+      <p>Formatted date:</p>
       <p>{ISODateString(startDate)}</p>
     </div>
   )
