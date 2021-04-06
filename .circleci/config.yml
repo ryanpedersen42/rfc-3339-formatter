@@ -1,8 +1,10 @@
 version: 2.1
 
 workflows:
-  - test
-  # - deploy
+  BTD:
+    jobs:
+      - test
+     # - deploy
 
 jobs:
   test:
