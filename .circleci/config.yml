@@ -1,0 +1,35 @@
+version: 2.1
+
+workflows:
+  - test
+  # - deploy
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:12.16
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+              # when lock file changes, use increasingly general patterns to restore cache
+              - node-cache-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+              - node-cache-v1-{{ .Branch }}-
+              - node-cache-v1-
+      - run:
+          name: Fetch dependencies
+          command: yarn install
+      - save_cache:
+          paths:
+              - ~/.npm
+              - ~/.cache
+          key: node-cache-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  # deploy:
+  #   docker:
+  #     - cimg/base:stable
+  #   steps:
+  #     - checkout
+  #     - run: 
+  #         name: Deploy Vercel
+  #         command: |
+  #           curl -X POST https://api.vercel.com/v1/integrations/deploy/${DEPLOY_KEY}
